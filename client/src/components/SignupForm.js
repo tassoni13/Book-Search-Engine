@@ -17,7 +17,7 @@ const SignupForm = () => {
     setUserFormData({ ...userFormData, [name]: value });
   };
 
-  const [createUser, { error, data }] = useMutation(ADD_USER);
+  const [createUser, {error, data}] = useMutation(ADD_USER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();

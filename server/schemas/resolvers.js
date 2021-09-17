@@ -14,12 +14,12 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!')
         },
     Mutation: {
-        addUser: async (parent, { body }) => {
-            const user = await User.create(body);
+        addUser: async (parent, { username, email, password }) => {
+            const user = await User.create({ username, email, password });
             const token = signToken(user);
             return { token, user };
         },
-        login: async (parent, { body }) => {
+        login: async (parent, { email, password }) => {
             const user = await User.findOne({ $or: [{ username: body.username }, { email: body.email }]});
 
             if (!user) {
